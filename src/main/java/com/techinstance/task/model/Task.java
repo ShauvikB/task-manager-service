@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -34,6 +36,10 @@ public class Task implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@ManyToOne
+	@JoinColumn(name = "TASK_PARENT_ID")
+	private Task parent;
+	
 	String title;
 	
 	private int priority;
@@ -41,5 +47,6 @@ public class Task implements Serializable {
 	private Date startDate;
 	
 	private Date endDate;
-
+	
+	private String status;
 }
